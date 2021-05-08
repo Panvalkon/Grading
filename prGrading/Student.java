@@ -20,7 +20,7 @@ public class Student {
 
 	public boolean equals(Object o) {
 		boolean ans = false;
-		if (o instanceof Student && ((Student) o).dni.equalsIgnoreCase(this.dni) && ((Student) o).name.equals(this.name)){
+		if (o instanceof Student && ((Student) o).dni.equalsIgnoreCase(this.dni) && ((Student) o).name.equals(this.name)) {
 			ans = true;
 		}
 		return ans;

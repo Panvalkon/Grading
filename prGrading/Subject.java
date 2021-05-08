@@ -25,8 +25,10 @@ public class Subject {
 				sc.useDelimiter("\\s*[;]\\s*");
 				String dni = sc.next();
 				String name = sc.next();
+				if (!sc.hasNext()) {
+					throw new NoSuchElementException();
+				}
 				if (sc.hasNextDouble()) {
-					// TODO fix the errors of missing data;
 					double grade = sc.nextDouble();
 					if (grade > 0) {
 						students[stcnt] = new Student(dni, name, grade);
@@ -40,7 +42,7 @@ public class Subject {
 			} catch (NoSuchElementException e) {
 				errors[errcnt++] = "ERROR. Missing data: " + d;
 			} catch (StudentException e) {
-				// THis should not be happening
+				// This should not be happening
 			}
 		}
 		students = Arrays.copyOf(students, stcnt);
@@ -66,12 +68,22 @@ public class Subject {
 		for (Student st : students) {
 			avg += st.getGrade();
 		}
-		return avg/students.length;
+		return avg / students.length;
 	}
 
 	public String toString() {
-		// TODO
-		return "";
+		StringBuilder sb = new StringBuilder();
+		// String s = new String();
+		sb.append(name).append(": {[");
+		for (int i = 0; i < students.length - 1; i++) {
+			sb.append(students[i].toString()).append(", ");
+		}
+		sb.append(students[students.length - 1].toString()).append("], [");
+		for (int i = 0; i < errors.length - 1; i++) {
+			sb.append(errors[i]).append(", ");
+		}
+		sb.append(errors[errors.length - 1]).append("]}");
+		return new String(sb);
 	}
 
 	public String getName() {
