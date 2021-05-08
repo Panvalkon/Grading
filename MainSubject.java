@@ -7,7 +7,7 @@ import prGrading.Subject;
 
 public class MainSubject {
 	
-		public static void main(String[] args) throws StudentException {
+		public static void main(String[] args) {
 			try{
 			String[] data = { "12455666F;Lopez Perez, Pedro;6.7",
 							  "33678999D;Merlo Gomez, Isabel;5.8",
@@ -22,10 +22,16 @@ public class MainSubject {
 			String grades = getGradesOf(poo, names);
 			System.out.printf(Locale.ENGLISH, "Average %.2f\nDNIs: %s%s", poo.getAverage(), dni, grades);
 		}
-		catch (StudentException | RuntimeException e) {			
+		catch (StudentException e) {
+			// Should not happen;
 		}
 	}
-
+		
+	/**
+	 * 	
+	 * @param poo object that contain all pupils that studying an Obj Oriented programming
+	 * @return a string of pupils and their notes
+	 */
 	private static String getDni(Subject poo) {
 		StringBuilder sb = new StringBuilder();
 		Student[] stud = poo.getStudents();
@@ -36,6 +42,12 @@ public class MainSubject {
 		return new String(sb);
 	}
 	
+	/**
+	 * 
+	 * @param poo object that contain all pupils that studying an Obj Oriented programming
+	 * @param names array of students names and DNI that we want to receive the information of
+	 * @return String that represent the information of of student grades (if inscribed); each student's info starts from new line.
+	 */
 	private static String getGradesOf(Subject poo, String[] names) {
 		Student[] stud = poo.getStudents();
 		StringBuilder sb = new StringBuilder();
@@ -57,7 +69,6 @@ public class MainSubject {
 				}
 			}
 		}
-		//System.out.print("test print " + sb + "\nend of test\n");
 		return new String(sb);
 	}
 	
