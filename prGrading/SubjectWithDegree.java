@@ -7,24 +7,25 @@ import java.util.NoSuchElementException;
 public class SubjectWithDegree extends SubjectWithAverages {
 
 	public SubjectWithDegree(String name, String[] data, prGrading.AverageCalculation ac) {
-		super(name, data, ac);
+		super(name, new String[] {}, ac);
 		students = Arrays.copyOf(students, data.length);
 		errors = Arrays.copyOf(errors, data.length);
 		processStudentsWithDegree(data);
 	}
-	
+
 	public double getAverage(Degree dgr) throws StudentException {
 		int i = 0;
 		String[] tmp = new String[students.length];
-		for(Student s : students) {
+		for (Student s : students) {
 			if (((StudentWithDegree) s).getDegree() == dgr) {
-				tmp[i] = String.format(Locale.ENGLISH,"%s;%s;%s" , s.getDni(), s.getName(), String.valueOf(s.getGrade()));
+				tmp[i] = String.format(Locale.ENGLISH, "%s;%s;%s", s.getDni(), s.getName(),
+						String.valueOf(s.getGrade()));
 				i++;
 			}
 		}
 		tmp = Arrays.copyOf(tmp, i);
 		SubjectWithAverages aa = new SubjectWithAverages("Algebra", tmp, this.getAverageCalculation());
-		
+
 		return aa.getAverage();
 	}
 
@@ -42,7 +43,7 @@ public class SubjectWithDegree extends SubjectWithAverages {
 			}
 		}
 		String s = new String(sb);
-		s = s.substring(0, s.length() -2);
+		s = s.substring(0, s.length() - 2);
 		sb = new StringBuilder(s);
 		sb.append("], [");
 		for (int i = 0; i < errors.length - 1; i++) {

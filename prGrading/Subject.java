@@ -25,24 +25,19 @@ public class Subject {
 				sc.useDelimiter("\\s*[;]\\s*");
 				String dni = sc.next();
 				String name = sc.next();
-				if (!sc.hasNext()) {
-					throw new NoSuchElementException();
+				String mark = sc.next();
+				Double grade = Double.parseDouble(mark);
+				if (grade < 0) {
+					throw new StudentException();
 				}
-				if (sc.hasNextDouble()) {
-					double grade = sc.nextDouble();
-					if (grade > 0) {
-						students[stcnt] = new Student(dni, name, grade);
-						stcnt++;
-					} else {
-						errors[errcnt++] = "ERROR. Negative grade: " + d;
-					}
-				} else {
-					errors[errcnt++] = "ERROR. Non numerical grade: " + d;
-				}
+				students[stcnt] = new Student(dni, name, grade);
+				stcnt++;
 			} catch (NoSuchElementException e) {
 				errors[errcnt++] = "ERROR. Missing data: " + d;
+			} catch (NumberFormatException e) {
+				errors[errcnt++] = "ERROR. Non numerical grade: " + d;
 			} catch (StudentException e) {
-				// This should not be happening
+				errors[errcnt++] = "ERROR. Negative grade: " + d;
 			}
 		}
 		students = Arrays.copyOf(students, stcnt);
