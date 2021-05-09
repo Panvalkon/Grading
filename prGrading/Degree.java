@@ -9,6 +9,7 @@ public enum Degree {
 	}
 	/*static final Degree COMPUTADORES;
 	static final Degree INFORMATICA;
+						Informatica
 	static final Degree SOFTWARE;
 	static final Degree SALUD;*/
 

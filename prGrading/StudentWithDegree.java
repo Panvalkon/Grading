@@ -45,6 +45,6 @@ public class StudentWithDegree extends Student {
 	
 	@Override
 	public String toString() {		
-		return this.toString() + " " + this.degree;
+		return super.toString() + " " + this.getDegree();
 	}
 }

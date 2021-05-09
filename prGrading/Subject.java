@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Subject {
 	private String name;
-	private Student[] students;
+	protected Student[] students;
 	protected String[] errors;
 
 	public Subject(String sbj, String[] data) {
@@ -73,7 +73,6 @@ public class Subject {
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		// String s = new String();
 		sb.append(name).append(": {[");
 		for (int i = 0; i < students.length - 1; i++) {
 			sb.append(students[i].toString()).append(", ");
